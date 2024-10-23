@@ -1,0 +1,165 @@
+{% load static %} <!-- Charger les fichiers statiques -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Securex - CCTV Camera Configuration</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
+        <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <h2 class="m-0 text-primary">Securex</h2>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-4 py-lg-0">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Camera Settings Start -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Left: Iframe for the camera stream -->
+            <div class="col-lg-6">
+                <iframe src="http://192.168.43.128" width="100%" height="600px" style="border: none;"></iframe>
+            </div>
+
+            <!-- Right: Camera control settings -->
+            <div class="col-lg-6">
+                <h3 class="mb-4">Camera Settings</h3>
+
+                <!-- Resolution Settings -->
+                <div class="mb-3">
+                    <label for="resolutionSelect" class="form-label">Resolution</label>
+                    <select class="form-select" id="resolutionSelect">
+                        <option value="SXGA">SXGA (1280x1024)</option>
+                        <option value="VGA">VGA (640x480)</option>
+                        <option value="QVGA">QVGA (320x240)</option>
+                    </select>
+                </div>
+
+                <!-- Quality Slider -->
+                <div class="mb-3">
+                    <label for="qualityRange" class="form-label">Quality</label>
+                    <input type="range" class="form-range" id="qualityRange" min="0" max="10" value="4">
+                </div>
+
+                <!-- Brightness -->
+                <div class="mb-3">
+                    <label for="brightnessRange" class="form-label">Brightness</label>
+                    <input type="range" class="form-range" id="brightnessRange" min="-2" max="2" value="0">
+                </div>
+
+                <!-- Contrast -->
+                <div class="mb-3">
+                    <label for="contrastRange" class="form-label">Contrast</label>
+                    <input type="range" class="form-range" id="contrastRange" min="-2" max="2" value="0">
+                </div>
+
+                <!-- Buttons for face detection, etc. -->
+                <div class="mt-4">
+                    <button class="btn btn-primary me-2" onclick="getStill()">Get Still</button>
+                    <button class="btn btn-danger me-2" onclick="stopStream()">Stop Stream</button>
+                    <button class="btn btn-success" onclick="enrollFace()">Enroll Face</button>
+                </div>
+
+                <!-- Advanced Settings -->
+                <div class="accordion mt-5" id="advancedSettingsAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Advanced Settings
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#advancedSettingsAccordion">
+                            <div class="accordion-body">
+                                <!-- Additional advanced settings -->
+                                <div class="mb-3">
+                                    <label for="awbSelect" class="form-label">AWB Mode</label>
+                                    <select class="form-select" id="awbSelect">
+                                        <option value="auto">Auto</option>
+                                        <option value="sunny">Sunny</option>
+                                        <option value="cloudy">Cloudy</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="gainRange" class="form-label">Gain Ceiling</label>
+                                    <input type="range" class="form-range" id="gainRange" min="2" max="128" value="2">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="ledIntensityRange" class="form-label">LED Intensity</label>
+                                    <input type="range" class="form-range" id="ledIntensityRange" min="0" max="255" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Camera Settings End -->
+
+    <script>
+        function getStill() {
+            console.log("Capturing still image...");
+            // Ajoute le code pour capturer une image ici
+        }
+
+        function stopStream() {
+            console.log("Stopping stream...");
+            // Ajoute le code pour arrêter le flux ici
+        }
+
+        function enrollFace() {
+            console.log("Enrolling face...");
+            // Ajoute le code pour l'inscription faciale ici
+        }
+    </script>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-secondary footer py-5">
+        <div class="container">
+            <!-- Footer content goes here -->
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
